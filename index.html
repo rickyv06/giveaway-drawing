@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-lights="classic">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFCFA">
+<meta name="robots" content="noindex,nofollow">
+<title>Giveaway Drawing | Stellar Realty Group</title>
+<meta name="description" content="Live progress and drawing wheel for the Ultimate Home Buying Package giveaway. First name + last initial only.">
+<link rel="preload" href="assets/lato-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/drawing.css">
+<script src="config.js"></script>
+</head>
+<body>
+  <div class="lights twinkle" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+
+  <div class="wrap">
+    <header class="top">
+      <a class="who" href="https://rickyv06.github.io/giveaway/" aria-label="Ricky Vasquez, REALTOR®, Stellar Realty Group">
+        <img src="assets/ricky-avatar.webp" alt="Ricky Vasquez" width="42" height="42">
+        <span>
+          <b>Ricky Vasquez, REALTOR®</b>
+          <span>Stellar Realty Group</span>
+        </span>
+      </a>
+      <a class="pill" href="tel:+17262006226">726.200.6226</a>
+    </header>
+
+    <div class="banner-demo" id="demoBanner">Demo data — not a live drawing</div>
+
+    <section class="hero">
+      <div class="eyebrow">Ultimate Home Buying Package · 2026</div>
+      <h1>Watch the entries. <em>Spin for the winner.</em></h1>
+      <p class="sub">Completed entries only. One fair spin, one winner. Prizes are redeemed when the winner buys their home with us — full details on the giveaway page.</p>
+    </section>
+
+    <div class="grid">
+      <section class="card" aria-label="Progress">
+        <h2>Live progress</h2>
+        <div class="stats">
+          <div class="stat accent"><b id="statCount">0</b><span>Completed entries</span></div>
+          <div class="stat"><b id="statGoal">500</b><span>Goal</span></div>
+        </div>
+
+        <div class="progress">
+          <div class="row"><b>Toward our goal</b><span><span id="progressPct">0%</span> of <span id="goalLabel">500</span></span></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progressBar"></i></div>
+        </div>
+
+        <div class="countdown" aria-label="Countdown to entries closing">
+          <div><b id="cdD">0</b><span>Days</span></div>
+          <div><b id="cdH">00</b><span>Hours</span></div>
+          <div><b id="cdM">00</b><span>Mins</span></div>
+          <div><b id="cdS">00</b><span>Secs</span></div>
+        </div>
+        <p class="fine" style="margin-top:8px">Entries close <b>Nov 30, 2026 · 11:59 PM CT</b>. Winner announced by Dec 4.</p>
+
+        <div class="ticker-wrap">
+          <div class="ticker-label">Recent entries</div>
+          <div class="ticker" id="ticker"><span>Waiting for completed entries…</span></div>
+        </div>
+
+        <div class="prizes" id="prizeChips"></div>
+
+        <details class="admin">
+          <summary>Host controls</summary>
+          <div class="body">
+            <label>Progress goal
+              <input id="goalInput" type="number" min="1" step="1" value="500">
+            </label>
+            <label>Load GHL CSV export (local only — never uploaded)
+              <input id="csvInput" type="file" accept=".csv,text/csv">
+            </label>
+            <p class="fine" id="dataStatus"><span class="status-dot warn"></span>Loading…</p>
+            <p class="fine">Privacy: this page only shows first name + last initial. Emails and phones never appear here. Add <code>?demo=1</code> to preview with demo data.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="card wheel-panel" aria-label="Drawing wheel">
+        <h2>Drawing wheel</h2>
+        <div class="wheel-stage">
+          <div class="wheel-pointer" aria-hidden="true"></div>
+          <canvas id="wheel" width="840" height="840" role="img" aria-label="Entry wheel"></canvas>
+          <div class="hub" aria-hidden="true"><b>In</b><span id="hubCount">0</span></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="spinBtn" type="button" disabled>Spin the wheel</button>
+          <button class="btn btn-ghost" id="resetBtn" type="button">Reset view</button>
+        </div>
+        <p class="fine">Each completed entry gets exactly one equal slice on the wheel. One entry per person. When it's time, we spin and someone wins.</p>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <div>© Stellar Realty Group · San Antonio</div>
+      <div>
+        <a href="https://rickyv06.github.io/giveaway/">Enter the giveaway</a>
+        ·
+        <a href="https://rickyv06.github.io/giveaway/rules.html">Official Rules</a>
+        ·
+        <a href="https://rickyv06.github.io/giveaway/privacy.html">Privacy</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="overlay" id="winnerOverlay" role="dialog" aria-modal="true" aria-labelledby="winnerTitle">
+    <div class="winner-card">
+      <div class="tag" id="winnerTitle">We have a winner</div>
+      <h3>Congratulations!</h3>
+      <div class="name" id="winnerName">—</div>
+      <p id="winnerMeta">Selected fairly from completed entries.</p>
+      <div class="actions" style="margin-top:16px">
+        <button class="btn btn-dark" id="closeWinner" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+  <canvas id="confetti"></canvas>
+
+  <script src="assets/drawing.js"></script>
+</body>
+</html>

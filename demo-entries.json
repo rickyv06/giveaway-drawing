@@ -1,0 +1,155 @@
+{
+  "updated_at": "2026-11-09T23:43:51.032888Z",
+  "timezone": "America/Chicago",
+  "closes_at": "2026-11-30T23:59:00-06:00",
+  "announce_by": "2026-12-04",
+  "goal": 500,
+  "demo": true,
+  "count": 24,
+  "entries": [
+    {
+      "id": "b88dd8aa08f281e3",
+      "name": "Maria G.",
+      "entered_at": "2026-11-05T18:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "50e5830b8044e33c",
+      "name": "James R.",
+      "entered_at": "2026-11-05T23:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "97f630ace3adbe5a",
+      "name": "Aisha K.",
+      "entered_at": "2026-11-06T04:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "90f18cfaedaebf8d",
+      "name": "Carlos M.",
+      "entered_at": "2026-11-06T09:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "9dfd32c735b7bd38",
+      "name": "Emily T.",
+      "entered_at": "2026-11-06T14:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "ad19b37b309fd5c3",
+      "name": "Diego P.",
+      "entered_at": "2026-11-06T19:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "b6a2990f0244be3f",
+      "name": "Sofia L.",
+      "entered_at": "2026-11-07T00:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "b40c5bd6a7d11a3f",
+      "name": "Marcus W.",
+      "entered_at": "2026-11-07T05:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "5c15a42f49c34e22",
+      "name": "Priya S.",
+      "entered_at": "2026-11-07T10:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "ffdcca048fcc7880",
+      "name": "Noah B.",
+      "entered_at": "2026-11-07T15:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "e69f2a77a930b901",
+      "name": "Isabella H.",
+      "entered_at": "2026-11-07T20:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "df44f7d6552400a9",
+      "name": "Liam C.",
+      "entered_at": "2026-11-08T01:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "ea2175fbb890c0dc",
+      "name": "Fatima A.",
+      "entered_at": "2026-11-08T06:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "b353e45519429d04",
+      "name": "Ethan D.",
+      "entered_at": "2026-11-08T11:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "6bb5b7de1dd62e0f",
+      "name": "Olivia N.",
+      "entered_at": "2026-11-08T16:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "ca0216c485585c9a",
+      "name": "Mateo V.",
+      "entered_at": "2026-11-08T21:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "747ec2b628dffe1f",
+      "name": "Chloe F.",
+      "entered_at": "2026-11-09T02:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "4d306f53599775b7",
+      "name": "Ryan J.",
+      "entered_at": "2026-11-09T07:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "e4656358487de1c1",
+      "name": "Amelia Z.",
+      "entered_at": "2026-11-09T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "e6658a267df28576",
+      "name": "Jordan E.",
+      "entered_at": "2026-11-09T17:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "c4ffd4506e42e318",
+      "name": "Grace Y.",
+      "entered_at": "2026-11-09T22:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "86d0eae514198ae6",
+      "name": "David Q.",
+      "entered_at": "2026-11-10T03:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "609e078243a6c835",
+      "name": "Hannah U.",
+      "entered_at": "2026-11-10T08:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "2e43f1822466788a",
+      "name": "Alex X.",
+      "entered_at": "2026-11-10T13:00:00Z",
+      "demo": true
+    }
+  ]
+}
