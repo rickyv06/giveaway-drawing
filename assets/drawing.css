@@ -73,19 +73,25 @@ html[data-demo="1"] .banner-demo{display:block}
 }
 .card h2{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
 
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
-.stat b{display:block;font-size:28px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1}
-.stat span{display:block;margin-top:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.stat.accent b{color:var(--red)}
+.count-hero{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;width:100%;padding:22px 14px 18px;margin-bottom:4px;
+  border-radius:16px;background:
+    radial-gradient(ellipse at 50% 0%, rgba(200,16,46,.10), transparent 60%),
+    var(--paper-2);
+  border:1px solid var(--line);
+}
+.count-hero b{
+  display:block;font-size:clamp(56px, 9vw, 84px);font-weight:900;line-height:.95;
+  letter-spacing:-.03em;color:var(--red);font-variant-numeric:tabular-nums;
+  text-shadow:0 8px 24px rgba(200,16,46,.12);
+}
+.count-hero span{
+  display:block;margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
 
-.progress{margin-top:12px}
-.progress .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;font-size:13px}
-.progress .row b{font-weight:800}
-.bar{height:14px;border-radius:999px;background:#efe8de;border:1px solid var(--line);overflow:hidden}
-.bar > i{display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--red),var(--red-2));box-shadow:0 0 12px rgba(200,16,46,.35);transition:width .6s ease}
-
-.countdown{display:flex;gap:8px;margin-top:12px;justify-content:space-between}
+.countdown{display:flex;gap:8px;margin-top:14px;justify-content:space-between}
 .countdown div{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 0;text-align:center;box-shadow:0 4px 14px rgba(31,58,47,.05)}
 .countdown b{display:block;font-size:20px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
 .countdown span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -102,6 +108,8 @@ html[data-demo="1"] .banner-demo{display:block}
 .chip{font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink)}
 .chip b{color:var(--red)}
 
+.live-card{display:flex;flex-direction:column}
+.live-card .prizes{margin-top:auto;padding-top:4px}
 .wheel-panel{text-align:center}
 .wheel-stage{position:relative;width:min(100%,420px);margin:0 auto;aspect-ratio:1}
 .wheel-pointer{

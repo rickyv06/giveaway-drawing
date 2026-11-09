@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#FFFCFA">
 <meta name="robots" content="noindex,nofollow">
 <title>Giveaway Drawing | Stellar Realty Group</title>
-<meta name="description" content="Live progress and drawing wheel for the Ultimate Home Buying Package giveaway. First name + last initial only.">
+<meta name="description" content="Live entry count and drawing wheel for the Ultimate Home Buying Package giveaway. First name + last initial only.">
 <link rel="preload" href="assets/lato-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/drawing.css">
 <script src="config.js"></script>
@@ -38,16 +38,11 @@
     </section>
 
     <div class="grid">
-      <section class="card" aria-label="Progress">
-        <h2>Live progress</h2>
-        <div class="stats">
-          <div class="stat accent"><b id="statCount">0</b><span>Completed entries</span></div>
-          <div class="stat"><b id="statGoal">500</b><span>Goal</span></div>
-        </div>
-
-        <div class="progress">
-          <div class="row"><b>Toward our goal</b><span><span id="progressPct">0%</span> of <span id="goalLabel">500</span></span></div>
-          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progressBar"></i></div>
+      <section class="card live-card" aria-label="Live entries">
+        <h2>Live entries</h2>
+        <div class="count-hero" aria-live="polite">
+          <b id="statCount">0</b>
+          <span>Completed entries</span>
         </div>
 
         <div class="countdown" aria-label="Countdown to entries closing">
@@ -60,7 +55,7 @@
 
         <div class="ticker-wrap">
           <div class="ticker-label">Recent entries</div>
-          <div class="ticker" id="ticker"><span>Waiting for completed entries…</span></div>
+          <div class="ticker" id="ticker"><span>Entries are just getting started</span></div>
         </div>
 
         <div class="prizes" id="prizeChips"></div>
@@ -68,9 +63,6 @@
         <details class="admin">
           <summary>Host controls</summary>
           <div class="body">
-            <label>Progress goal
-              <input id="goalInput" type="number" min="1" step="1" value="500">
-            </label>
             <label>Load GHL CSV export (local only — never uploaded)
               <input id="csvInput" type="file" accept=".csv,text/csv">
             </label>

@@ -3,7 +3,6 @@
 
   const cfg = Object.assign(
     {
-      goal: 500,
       closesAt: "2026-11-30T23:59:00-06:00",
       announceBy: "December 4, 2026",
       entriesUrl: "entries.json",
@@ -21,10 +20,6 @@
 
   const el = {
     count: document.getElementById("statCount"),
-    goal: document.getElementById("statGoal"),
-    bar: document.getElementById("progressBar"),
-    pct: document.getElementById("progressPct"),
-    goalLabel: document.getElementById("goalLabel"),
     cdD: document.getElementById("cdD"),
     cdH: document.getElementById("cdH"),
     cdM: document.getElementById("cdM"),
@@ -41,13 +36,11 @@
     closeWinner: document.getElementById("closeWinner"),
     confetti: document.getElementById("confetti"),
     csvInput: document.getElementById("csvInput"),
-    goalInput: document.getElementById("goalInput"),
     prizes: document.getElementById("prizeChips"),
   };
 
   /** @type {{id:string,name:string,entered_at?:string,demo?:boolean}[]} */
   let entries = [];
-  let goal = Number(cfg.goal) || 500;
   let spinning = false;
   let currentRotation = 0;
   let lastWinner = null;
@@ -84,14 +77,8 @@
 
   function updateStats() {
     const n = entries.length;
-    el.count.textContent = String(n);
-    el.goal.textContent = String(goal);
-    el.goalLabel.textContent = String(goal);
-    el.hubCount.textContent = String(n);
-    if (el.goalInput) el.goalInput.value = String(goal);
-    const pct = Math.max(0, Math.min(100, (n / Math.max(goal, 1)) * 100));
-    el.bar.style.width = pct.toFixed(1) + "%";
-    el.pct.textContent = Math.round(pct) + "%";
+    if (el.count) el.count.textContent = String(n);
+    if (el.hubCount) el.hubCount.textContent = String(n);
     el.spinBtn.disabled = spinning || n < 1;
     renderTicker();
     paintWheel();
@@ -234,7 +221,6 @@
         demo: !!e.demo || !!data.demo,
       }))
       .filter((e) => e.id && e.name);
-    if (typeof data.goal === "number" && data.goal > 0) goal = data.goal;
     const demo = !!data.demo || entries.some((e) => e.demo) || forceDemo;
     document.documentElement.setAttribute("data-demo", demo ? "1" : "0");
     setStatus(
@@ -563,16 +549,6 @@
       reader.readAsText(f);
     });
   }
-  if (el.goalInput) {
-    el.goalInput.addEventListener("change", function () {
-      const v = parseInt(el.goalInput.value, 10);
-      if (v > 0) {
-        goal = v;
-        updateStats();
-      }
-    });
-  }
-
   window.addEventListener("resize", fitCanvas);
 
   // Boot

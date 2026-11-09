@@ -1,6 +1,5 @@
 /* Easy knobs — edit and refresh. No secrets here. */
 window.DRAWING_CONFIG = {
-  goal: 500,                         // progress bar target (completed entries)
   closesAt: "2026-11-30T23:59:00-06:00", // entries close (America/Chicago)
   announceBy: "December 4, 2026",
   entriesUrl: "entries.json",        // sanitized public feed

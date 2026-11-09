@@ -7,7 +7,7 @@ Public progress + spin-wheel page for the Ultimate Home Buying Package giveaway.
 This repo is static GitHub Pages only. It does **not** contain private contact data, API tokens, or fetch scripts.
 
 ## What visitors see
-- Completed entry count and progress toward the goal
+- Completed entry count
 - Countdown to entries closing (Nov 30, 2026 · 11:59 PM CT)
 - Recent-entries ticker (first name + last initial only)
 - Spin wheel for drawing night
