@@ -2,7 +2,7 @@
 
 Public progress + spin-wheel page for the Ultimate Home Buying Package giveaway.
 
-**Live:** https://rickyv06.github.io/giveaway-drawing/
+**Live:** https://winner.stellarrealtytx.com/
 
 This repo is static GitHub Pages only. It does **not** contain private contact data, API tokens, or fetch scripts.
 
