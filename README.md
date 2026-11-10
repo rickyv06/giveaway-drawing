@@ -37,3 +37,14 @@ From the private workspace (token stays in env, never in this repo):
 - Public files show first name + last initial only
 - `robots.txt` disallows all crawlers; page has `noindex,nofollow`
 - No emails, phones, GHL ids, or tokens are published here
+
+## Live entry feed (no bot usage)
+
+Completed entries are appended by Zapier to the Google Sheet
+[Giveaway 2026 drawing entries](https://docs.google.com/spreadsheets/d/1iQqcqfUhk_GIkp-jD1iqizO_Pkl62rlBNl56KsE9e9E/edit)
+(columns: `timestamp`, `display_name`, `entry_id` only — never email/phone).
+
+The page polls the Sheet CSV every ~25s (`config.js` → `sheetCsvUrl`), with
+same-origin `live-entries.csv` and `entries.json` as fallbacks. Sheet must be
+shared **Anyone with the link → Viewer** so the static page can fetch it.
+

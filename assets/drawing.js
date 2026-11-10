@@ -5,9 +5,11 @@
     {
       closesAt: "2026-11-30T23:59:00-06:00",
       announceBy: "December 4, 2026",
+      sheetCsvUrl: "",
+      liveCsvUrl: "live-entries.csv",
       entriesUrl: "entries.json",
       demoEntriesUrl: "demo-entries.json",
-      pollMs: 60000,
+      pollMs: 25000,
       prizes: [],
     },
     window.DRAWING_CONFIG || {}
@@ -234,23 +236,111 @@
     updateStats();
   }
 
+  function bust(url) {
+    return url + (url.includes("?") ? "&" : "?") + "t=" + Date.now();
+  }
+
+  async function loadText(url) {
+    const res = await fetch(bust(url), { cache: "no-store", mode: "cors" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.text();
+  }
+
+  /** Parse the public drawing sheet CSV: timestamp,display_name,entry_id */
+  function ingestSheetCsv(text) {
+    const rows = parseCsv(text);
+    if (!rows.length) {
+      entries = [];
+      document.documentElement.setAttribute("data-demo", "0");
+      setStatus("Sheet feed · 0 completed", "ok");
+      updateStats();
+      return;
+    }
+    const header = rows[0].map(function (h) {
+      return String(h || "").trim().toLowerCase().replace(/^"|"$/g, "");
+    });
+    const idx = function (names) {
+      for (var n = 0; n < names.length; n++) {
+        var i = header.indexOf(names[n]);
+        if (i >= 0) return i;
+      }
+      return -1;
+    };
+    var iTs = idx(["timestamp", "entered_at", "submitted_at", "date"]);
+    var iName = idx(["display_name", "name", "entrant"]);
+    var iId = idx(["entry_id", "id"]);
+    // If no header match, assume timestamp,display_name,entry_id
+    var start = 1;
+    if (iName < 0 && iId < 0) {
+      iTs = 0;
+      iName = 1;
+      iId = 2;
+      start = header[0] && /timestamp|display|name|entry/i.test(header[0]) ? 1 : 0;
+    }
+    var seen = Object.create(null);
+    var out = [];
+    for (var r = start; r < rows.length; r++) {
+      var row = rows[r];
+      var name = String((iName >= 0 ? row[iName] : "") || "")
+        .trim()
+        .replace(/^"|"$/g, "");
+      var id = String((iId >= 0 ? row[iId] : "") || "")
+        .trim()
+        .replace(/^"|"$/g, "");
+      var entered = iTs >= 0 ? String(row[iTs] || "").trim().replace(/^"|"$/g, "") : "";
+      if (!name) continue;
+      if (!id) id = opaqueFrom(name, entered, String(r));
+      if (seen[id]) continue;
+      seen[id] = true;
+      out.push({ id: id, name: name, entered_at: entered || null });
+    }
+    entries = out;
+    document.documentElement.setAttribute("data-demo", "0");
+    setStatus("Sheet feed · " + entries.length + " completed", "ok");
+    updateStats();
+  }
+
   async function refreshEntries() {
-    try {
-      const url = forceDemo ? cfg.demoEntriesUrl : cfg.entriesUrl;
-      const data = await loadJson(url);
-      if (!forceDemo && data.count === 0 && data.demo !== true) {
-        // empty live feed is fine
-      }
-      applyPayload(data, forceDemo ? "Demo feed" : "entries.json");
-    } catch (err) {
-      if (forceDemo) {
+    if (forceDemo) {
+      try {
+        const data = await loadJson(cfg.demoEntriesUrl);
+        applyPayload(data, "Demo feed");
+      } catch (err) {
         setStatus("Could not load demo-entries.json", "err");
-        return;
       }
+      return;
+    }
+
+    // Prefer live Google Sheet CSV (Zapier appends completed entries).
+    if (cfg.sheetCsvUrl) {
+      try {
+        const text = await loadText(cfg.sheetCsvUrl);
+        ingestSheetCsv(text);
+        return;
+      } catch (sheetErr) {
+        // fall through
+      }
+    }
+
+    // Same-origin CSV mirror (no CORS), then entries.json
+    if (cfg.liveCsvUrl) {
+      try {
+        const text = await loadText(cfg.liveCsvUrl);
+        ingestSheetCsv(text);
+        return;
+      } catch (liveErr) {
+        // fall through
+      }
+    }
+
+    try {
+      const data = await loadJson(cfg.entriesUrl);
+      applyPayload(data, "entries.json");
+    } catch (err) {
       try {
         const data = await loadJson(cfg.demoEntriesUrl);
         applyPayload(data, "Fallback demo feed");
-        setStatus("Live entries.json missing — showing DEMO", "warn");
+        setStatus("Live feed unavailable — showing DEMO", "warn");
       } catch (e2) {
         setStatus("No entry data loaded", "err");
       }
